@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * asu_cropit.module - cropit library integration with Libraries API.
+ *
+ * @author
+ * Michael Samuelson <mlsamuel@asu.edu> / <mlsamuelson@gmail.com>
+ *
+ */
+
+/*********************************************************************
+  CONFIG
+*********************************************************************/
+
+
+/*********************************************************************
+  DRUPAL HOOKS
+*********************************************************************/
+
+/**
+ * Implements hook_libraries_info()
+ *
+ */
+function asu_cropit_libraries_info() {
+  // Expected to be extracted into 'sites/all/libraries/jqtree'.
+  $libraries['cropit'] = array(
+    'name' => 'cropit Library',
+    'vendor url' => 'http://scottcheng.github.io/cropit/',
+    'download url' => 'https://github.com/scottcheng/cropit/archive/master.zip',
+    // Short circuit version requirement. Keep it simple.
+    'version callback' => 'asu_cropit_short_circuit_version',
+    'files' => array(
+      'js' => array('dist/jquery.cropit.js'), // Can be a path to the file location like array('lib/simple.js')
+      // CSS to be added by module. See demo examples in library to get started.
+      //'css' => array('jqtree.css'), // Can be a path to the file location like array('css/simple.css')
+    ),
+  );
+
+  return $libraries;
+}
+
+/*********************************************************************
+  CALLBACKS
+*********************************************************************/
+
+
+/*********************************************************************
+  THEMING
+*********************************************************************/
+
+
+/*********************************************************************
+  FORMS
+*********************************************************************/
+
+
+/*********************************************************************
+  INTERNAL
+*********************************************************************/
+
+/**
+ * Short-circuit the version argument.
+ */
+function asu_cropit_short_circuit_version() {
+  return TRUE;
+}
+
+/*********************************************************************
+  API
+*********************************************************************/
+
+
+/*********************************************************************
+  DEVELOPER NOTES 
+*********************************************************************/
+
+// Load library when needed with libraries_load('cropit');
